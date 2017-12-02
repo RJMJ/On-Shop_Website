@@ -1,7 +1,7 @@
 # DBMS_project(On-Shop)
 This is a simple Data Base Management Project Based on E-Commerce Website.
 
-# To set this web application, make sure PHP and PHPMyAdmin is installed on your server.
+To set this web application, make sure PHP and PHPMyAdmin is installed on your server.
 
 Next open PHPMyAdmin, create a database and import the on-shop.sql file. This will generate tables in your database on your server.
 Upload all files on your server except for on-shop.sql.

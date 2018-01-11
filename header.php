@@ -48,31 +48,25 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
 						</div>
 					</form>
 					<div class="pull-right">
-						
-						<?php
-							if(isset($_SESSION['username'])){
-								echo '<p class="navbar-text"> <a  class="navbar-link login" href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a>';
+			
+						<p class="navbar-text navbar-right">
+							<?php
+								if(isset($_SESSION['username'])){								echo '<a  class="navbar-link login" href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a>';
 								echo '<a class="navbar-link login" href="logout.php"><i class="glyphicon glyphicon -log-out"></i> Log Out</a>';
 								echo '<a class="btn btn-default action-button" href="account.php"><i class="glyphicon glyphicon-user"></i> My Account</a>';
-							}else {
-								echo '<ul class="nav navbar-nav" class="navbar-link login">';
-								echo '<li class="dropdown">';
-								echo '<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#"><i class="glyphicon glyphicon-user"></i> Log In <span class="caret"></span></a>';
-								echo '<ul class="dropdown-menu" role="menu">';
-								echo '<li role="presentation"><a href="login.php"> User Login </a></li>';
-								echo '<li role="presentation"><a href="admin_login.php">Admin Login </a></li>';
-								echo '</ul>';
-								echo'</li>';
-								echo '</ul>';
-								echo '<a class="btn btn-default action-button navbar-right" role="button" href="signup.php" style="margin-top:9px"><i class="glyphicon glyphicon-log-in"></i> Sign Up</a>';
-							}
-						?>
-
-					</p>
+								}
+								else {
+									echo '<a class="navbar-link login" href="login.php"><i class="glyphicon glyphicon glyphicon-user"></i> Log In</a>';
+									echo '<a class="btn btn-default action-button" href="signup.php"><i class="glyphicon glyphicon-log-in"></i> Sign Up</a>';
+								}
+							?>
+						</p>
+					</div>
+				
 				</div>
 			</div>
-        </nav>
-    </div>
+		</nav>
+    	</div>
 <!-- Header Nav End -->
 
     <script src="include/bootstrap/js/jquery-3.2.1.min.js"></script>

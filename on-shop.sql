@@ -45,7 +45,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `fname`, `lname`, `address`, `email`, `password`, `type`) VALUES
-(1, 'Steve', 'Jobs', 'Infinite Loop', 'sjobs@gmail.com', 'admin', 'admin');
+(1, 'admin', 'user', 'Infinite Loop', 'admin@admin.com', 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -137,6 +137,14 @@ CREATE TABLE `users` (
   `type` varchar(20) NOT NULL DEFAULT 'user'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fname`, `lname`, `address`, `email`, `password`, `type`) VALUES
+(1, 'First', 'User', 'Infinite Loop', 'user@user.com', 'user', 'user');
+
+-- --------------------------------------------------------
 --
 -- Indexes for dumped tables
 --

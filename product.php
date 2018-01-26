@@ -1,10 +1,7 @@
 <?php
-
 //if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(session_id() == '' || !isset($_SESSION)){session_start();}
-
-include 'config.php';
-
+  include 'config.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,21 +13,59 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Products || On-Shop</title>
     <link rel="stylesheet" href="include/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
     <link rel="stylesheet" href="include/style.css">
     <link rel="stylesheet" type="text/css" href="include/display.css">
 </head>
-
 <body>
-    <!-- Include header.php -->
-    <?php
-      include "header.php";
-    ?><br>
+    
+<!-- Header Nav ============================================================== -->
+  <div class="header-blue">
+    <nav class="navbar navbar-default navigation-clean-search">
+      <div class="container">
+        <div class="navbar-header"><a class="navbar-brand navbar-link" href="index.php">On-Shop</a>
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav">
+            <li class="active" role="presentation"><a href="index.php">Home</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">All Catagories <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="product.php">Smart Phones</a></li>
+                <li><a href="product.php">Laptops</a></li>
+                <li><a href="product.php">Accessories</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" target="_self" method="GET" action="search.php">
+            <div class="form-group">
+              <label class="control-label" for="search-field"><i class="glyphicon glyphicon-search"></i></label>
+                <input class="form-control search-field" type="search" name="search" id="search-field">
+            </div>
+          </form>
+          <p class="navbar-text navbar-right">
+            <?php
+              if(isset($_SESSION['username'])){
+                echo '<a  class="navbar-link login" href="cart.php"><i class="glyphicon glyphicon-shopping-cart"></i> Cart</a>';
+                echo '<a class="navbar-link login" href="logout.php"><i class="glyphicon glyphicon -log-out"></i> Log Out</a>';
+                echo '<a class="btn btn-default action-button" href="account.php"><i class="glyphicon glyphicon-user"></i> My Account</a>';
+              }
+              else {
+                echo '<a class="navbar-link login" href="login.php"><i class="glyphicon glyphicon glyphicon-user"></i> Log In</a>';
+                echo '<a class="btn btn-default action-button" href="signup.php"><i class="glyphicon glyphicon-log-in"></i> Sign Up</a>';
+              }
+            ?>
+
+          </p>
+        </div>
+      </div>
+        </nav>
+    </div>
+<!-- Header Nav End --><br>
 
   <!-- Product Menu ====================================================== -->
   <div class="team_columns_carousel_wrapper">
         <div class="item active">
-        <a href="signup.php"><img src="assets/img/slides/oppo.jpg" style="width:100%;"></a>
+        <a href="signup.php"><img src="assets/slides/oppo.jpg" style="width:100%;"></a>
       </div>
     </div><br>
   <!-- Product Menu End -->
@@ -48,7 +83,7 @@ include 'config.php';
               while($obj = $sql->fetch_object()) {
                 echo '<div class="item">';
                 echo '<div class="col-xs-12 col-sm-6 col-md-3 team_columns_item_image">';
-                echo '  <a><img src="assets/img/product/'.$obj->product_img_name.'" width="100%" data-toggle="modal" data-target="#'.$obj->id.'"></a>';    
+                echo '  <a><img src="assets/product/'.$obj->product_img_name.'" width="100%" data-toggle="modal" data-target="#'.$obj->id.'"></a>';    
                 echo '<div class="team_columns_item_caption">';
                 echo '<h5 data-toggle="modal" data-target="#'.$obj->id.'"><a>'.$obj->product_name.'</a></h5>';
                 echo '<hr>';
@@ -64,27 +99,7 @@ include 'config.php';
                 echo '<h4 class="modal-title">'.$obj->product_name.'</h4>';
                 echo '</div>';
                 echo '<div class="modal-body">';
-                // echo '<div class="container">';
-                // echo '<div class="card">';
-                // echo '<div class="container-fliud">';
-                // echo '<div class="wrapper row">';
-                // echo '<div class="preview col-md-6">';
-                // echo '<div class="preview-pic tab-content">';
-                // echo '<div class="tab-pane active" id="pic-1"><img src="assets/img/product/'.$obj->product_img_name.'" /></div>';
-                // echo '</div>';
-                // echo '</div>';
-                // echo '<div class="details col-md-6">';
-                // echo '<h3 class="product-title">Product Details</h3>';
-                // echo '<p><h3>'.$obj->product_name.'</h3></p>';
-                // echo '<p><h4><strong>Description</strong>: '.$obj->product_desc.'</h4></p>';
-                // echo '<p><h3><strong>Price (Per Unit)</strong>: ₹ '.$currency.$obj->price.'</h3></p>';
-                // echo '<p class="vote"><h4><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></h4></p>';
-                // echo '<h5 class="colors">colors:';
-                // echo '<span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>';
-                // echo '<span class="color green"></span>';
-                // echo '<span class="color blue"></span><br><br><br>';    
-                // echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p><br>';
-                                         echo '<div class="col-lg-4"><img src="assets/img/product/'.$obj->product_img_name.'"></div>
+                echo '<div class="col-lg-4"><img src="assets/product/'.$obj->product_img_name.'"></div>
                                <p><h3>'.$obj->product_name.'</h3></p>
                                <p><h4><strong>Description</strong>: '.$obj->product_desc.'</h4></p>
                                <p><h3><strong>Price (Per Unit)</strong>: '.$currency.$obj->price.'</h3></p>
@@ -108,11 +123,51 @@ include 'config.php';
          <hr></div>
       </div><br>
 <!-- Index Product End -->
-            
+
     <!-- Include footer.php -->
-    <?php
-      include "footer.php";
-    ?>
+    <footer id="myFooter">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 myCols">
+          <h5>Get started</h5>
+          <ul>
+            <li><a href="index.php">Home</a></li>
+            <li><a href="signup.php">Sign up</a></li>
+            <li><a href="login.php">Log In</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3 myCols">
+          <h5>About us</h5>
+            <ul>
+              <li><a href="about.php">Company Information</a></li>
+              <li><a href="contact.php">Contact us</a></li>
+              <li><a href="rev.php">Reviews</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-3 myCols">
+          <h5>Support</h5>
+            <ul>
+              <li><a href="faq.php">FAQ</a></li>
+              <li><a href="contact.php">Help desk</a></li>
+              <li><a href="index.php">Forums</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-3 myCols">
+          <h5>Legal</h5>
+            <ul>
+              <li><a href="tns.php">Terms of Service</a></li>
+              <li><a href="tns.php">Terms of Use</a></li>
+              <li><a href="tns.php">Privacy Policy</a></li>
+            </ul>
+        </div>
+      </div>
+    </div><hr>    
+    <div class="footer-copyright">
+      <p><a href="admin_login.php">© 2017-2018 Copyright by On-Shop, All rights reserved</a></p>
+        </div>
+    </footer>
+<!-- Footer End -->
+
     <script src="include/bootstrap/js/jquery-3.2.1.min.js"></script>
     <script src="include/bootstrap/js/bootstrap.min.js"></script>
 </body>
